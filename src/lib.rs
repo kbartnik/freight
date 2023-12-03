@@ -165,7 +165,7 @@ pub fn build_tests() -> Result<()> {
     Ok(())
 }
 
-pub fn run_tests() -> Result<()> {
+pub fn run_tests(test_args: Vec<String>) -> Result<()> {
     for item in root_dir()?
         .join("target")
         .join("debug")
@@ -176,7 +176,7 @@ pub fn run_tests() -> Result<()> {
         let path = item.path();
         let is_test = path.extension().is_none();
         if is_test {
-            Command::new(path).spawn()?.wait()?;
+            Command::new(path).args(&test_args).spawn()?.wait()?;
         }
     }
 
