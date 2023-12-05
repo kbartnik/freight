@@ -15,23 +15,23 @@ impl Logger {
 
     pub fn compiling_crate(&mut self, crate_name: &str) -> Result<()> {
         self.out
-            .write_all(format!("Compiling lib {crate_name}...\n").as_bytes())?;
+            .write_all(format!("    Compiling lib {crate_name}\n").as_bytes())?;
         self.out.flush()?;
         Ok(())
     }
 
     pub fn compiling_bin(&mut self, crate_name: &str) -> Result<()> {
         self.out
-            .write_all(format!("Compiling bin {crate_name}...\n").as_bytes())?;
+            .write_all(format!("    Compiling bin {crate_name}\n").as_bytes())?;
         self.out.flush()?;
         Ok(())
     }
 
-    //pub fn done_compiling(&mut self) -> Result<()> {
-    //    self.out.write_all(b"    Finished dev\n")?;
-    //    self.out.flush()?;
-    //    Ok(())
-    //}
+    pub fn done_compiling(&mut self) -> Result<()> {
+        self.out.write_all(b"    Finished dev\n")?;
+        self.out.flush()?;
+        Ok(())
+    }
 
     pub fn main_unit_test(&mut self) -> Result<()> {
         self.unit_test("src/main.rs")?;

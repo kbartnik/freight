@@ -150,6 +150,7 @@ pub fn build_tests() -> Result<()> {
         (false, false) => return Err("There is nothing to compile".into()),
     }
 
+    logger.done_compiling()?;
     Ok(())
 }
 
