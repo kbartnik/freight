@@ -1,7 +1,6 @@
 run: build
 	./target/debug/freight help
-build:
-	rm -rf target
+build: clean
 	mkdir -p target/bootstrap
 	# Build crate dependencies
 	rustc src/lib.rs --edition 2021 --crate-type=lib --crate-name=freight \
@@ -16,3 +15,5 @@ test: build
 	./target/debug/freight test ignored-arg -- --list
 	# Actually run the tests
 	./target/debug/freight test
+clean:
+	rm -rf target
